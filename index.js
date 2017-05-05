@@ -14,6 +14,7 @@ const toEvent = ({_key, url, name, description, location, start, end} = {}) => `
 BEGIN:VEVENT
 UID:${_key}
 URL:${url ? url : ''}
+DTSTAMP:${start.replace(/[-:]/g, '')}
 DTSTART:${start.replace(/[-:]/g, '')}
 DTEND:${end.replace(/[-:]/g, '')}
 SUMMARY:${name}
@@ -26,6 +27,11 @@ get(url)
   //=> `)]}',\n{...}`
   .then(res => Promise.resolve(JSON.parse(res.responseText.split('\n')[1])))
   .then(res => res.objects.map(toEvent))
-  .then(events => `BEGIN:VCALENDAR\nVERSION:1.0\n${events.join('')}\nEND:VCALENDAR`)
+  .then(events => `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//tlvince//campus-london-ical//EN
+${events.join('')}
+END:VCALENDAR
+`)
   .then(res => console.log(res))
   .catch(res => console.error(res))
