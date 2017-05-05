@@ -1,0 +1,19 @@
+{
+  "name": "campus-london-ical",
+  "version": "1.0.0",
+  "description": "Campus London events in iCal format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo write some"
+  },
+  "keywords": [
+    "campus",
+    "london",
+    "ical"
+  ],
+  "author": "Tom Vincent <git@tlvince.com>",
+  "license": "MIT",
+  "dependencies": {
+    "simple-get-promise": "^1.0.2"
+  }
+}
