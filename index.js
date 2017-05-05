@@ -1,4 +1,5 @@
 const get = require('simple-get-promise').get
+const html2plaintext = require('html2plaintext')
 
 const now = new Date()
 const month = parseInt(('0' + (now.getMonth() + 1)).slice(-2))
@@ -16,7 +17,7 @@ URL:${url}
 DTSTART:${start.replace(/[-:]/g, '')}
 DTEND:${end.replace(/[-:]/g, '')}
 SUMMARY:${name}
-DESCRIPTION:${url} ${description.replace(/\n/g, ' ').replace(/\s{2,}/g, ' ')}
+DESCRIPTION:${url} - ${html2plaintext(description).replace(/\n/g, ' ').replace(/\s+/g, ' ')}
 LOCATION:${location}
 END:VEVENT
 `
