@@ -10,14 +10,14 @@ const london = 'ag1zfmd3ZWItY2FtcHVzciILEgZDYW1wdXMiBFJvb3QMCxIGQ2FtcHVzIgZsb25k
 
 const url = `https://www.campus.co/api/campuses/${london}/events/?format=json&start=${start}&end=${end}`
 
-const toEvent = ({_key, url='', name, description, location, start, end} = {}) => `
+const toEvent = ({_key, url, name, description, location, start, end} = {}) => `
 BEGIN:VEVENT
 UID:${_key}
-URL:${url}
+URL:${url ? url : ''}
 DTSTART:${start.replace(/[-:]/g, '')}
 DTEND:${end.replace(/[-:]/g, '')}
 SUMMARY:${name}
-DESCRIPTION:${url} - ${html2plaintext(description).replace(/\n/g, ' ').replace(/\s+/g, ' ')}
+DESCRIPTION:${url ? url + ' - ' : ''}${html2plaintext(description).replace(/\n/g, ' ').replace(/\s+/g, ' ')}
 LOCATION:${location}
 END:VEVENT
 `
