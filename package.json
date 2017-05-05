@@ -4,7 +4,8 @@
   "description": "Campus London events in iCal format",
   "main": "index.js",
   "scripts": {
-    "test": "echo write some"
+    "pretest": "rm -rf build && mkdir build",
+    "test": "node index.js > build/campus-london.ical"
   },
   "keywords": [
     "campus",
