@@ -15,6 +15,7 @@
   "author": "Tom Vincent <git@tlvince.com>",
   "license": "MIT",
   "dependencies": {
+    "html2plaintext": "^1.1.1",
     "simple-get-promise": "^1.0.2"
   }
 }
