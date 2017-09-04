@@ -4,8 +4,8 @@ const html2plaintext = require('html2plaintext')
 const now = new Date()
 const month = parseInt(('0' + (now.getMonth() + 1)).slice(-2))
 
-const end = `${now.getFullYear()}-0${month + 1}-01`
-const start = `${now.getFullYear()}-0${month}-01`
+const end = `${now.getFullYear()}-${month + 1}-01`
+const start = `${now.getFullYear()}-${month}-01`
 const london = 'ag1zfmd3ZWItY2FtcHVzciILEgZDYW1wdXMiBFJvb3QMCxIGQ2FtcHVzIgZsb25kb24M'
 
 const url = `https://www.campus.co/api/campuses/${london}/events/?format=json&start=${start}&end=${end}`
