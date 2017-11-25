@@ -1,14 +1,15 @@
 const get = require('simple-get-promise').get
 const html2plaintext = require('html2plaintext')
+const { format, addMonths } = require('date-fns')
 
+const iso = 'YYYY-MM-DD'
 const now = new Date()
-const month = parseInt(('0' + (now.getMonth() + 1)).slice(-2))
+const lastMonth = addMonths(now, -1)
+const nextMonth = addMonths(now, 1)
+const start = format(lastMonth, iso)
+const end = format(nextMonth, iso)
 
-const end = `${now.getFullYear()}-${month + 1}-01`
-const start = `${now.getFullYear()}-${month}-01`
-const london = 'ag1zfmd3ZWItY2FtcHVzciILEgZDYW1wdXMiBFJvb3QMCxIGQ2FtcHVzIgZsb25kb24M'
-
-const url = `https://www.campus.co/api/campuses/${london}/events/?format=json&start=${start}&end=${end}`
+const url = `https://www.campus.co/api/campuses/london/events/?format=json&start=${start}&end=${end}`
 
 const toEvent = ({_key, url, name, description, location, start, end} = {}) => `
 BEGIN:VEVENT
