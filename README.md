@@ -1,5 +1,10 @@
 # campus-london-ical
 
+[![Build Status][travis-image]][travis-url]
+
+[travis-url]: https://travis-ci.org/tlvince/campus-london-ical
+[travis-image]: https://travis-ci.org/tlvince/campus-london-ical.svg?branch=master
+
 > Campus London events in iCal format
 
 Converts Campus London's [event page](https://www.campus.co/london/en/events) to iCal format.
