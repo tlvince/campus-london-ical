@@ -9,18 +9,25 @@ const nextMonth = addMonths(now, 1)
 const start = format(lastMonth, iso)
 const end = format(nextMonth, iso)
 
-const url = `https://www.campus.co/api/campuses/london/events/?format=json&start=${start}&end=${end}`
+const url = `https://www.campus.co/api/campuses/london/events/v2?format=json&start=${start}&end=${end}`
 
-const toEvent = ({_key, url, name, description, location, start, end} = {}) => `
+const toEvent = ({
+  url = 'https://www.campus.co/london/en/events',
+  _key,
+  name,
+  local_end_str,
+  local_start_str,
+  description_preview
+} = {}) => `
 BEGIN:VEVENT
 UID:${_key}
-URL:${url ? url : ''}
-DTSTAMP:${start.replace(/[-:]/g, '')}
-DTSTART:${start.replace(/[-:]/g, '')}
-DTEND:${end.replace(/[-:]/g, '')}
+URL:${url}/${_key}
+DTSTAMP:${local_start_str.replace(/[-:]/g, '')}
+DTSTART:${local_start_str.replace(/[-:]/g, '')}
+DTEND:${local_end_str.replace(/[-:]/g, '')}
 SUMMARY:${name}
-DESCRIPTION:${url ? url + ' - ' : ''}${html2plaintext(description).replace(/\n/g, ' ').replace(/\s+/g, ' ')}
-LOCATION:${location}
+DESCRIPTION:${url}/${_key} - ${html2plaintext(description_preview).replace(/\n/g, ' ').replace(/\s+/g, ' ')}
+LOCATION:Campus London
 END:VEVENT
 `
 
